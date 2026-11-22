@@ -19,10 +19,14 @@ function Navbar() {
         NutriCheck
       </Link>
 
-      {user ? (
-        <button onClick={handleLogout} className="bg-rose-600 px-3 py-1 rounded">
-          Logout
-        </button>
+            {user ? (
+                <div className="flex gap-[16px]">
+                <Link to="/menu">Menu</Link>
+                  <Link to="/my-meals">My Meals</Link>
+            <button onClick={handleLogout} className="bg-rose-600 px-3 py-1 rounded">
+            Logout
+          </button>
+        </div>
       ) : (
         <div className="flex gap-4">
           <Link to="/login">Login</Link>
