@@ -1,8 +1,25 @@
+import { Routes, Route } from "react-router-dom"
+import Register from "./pages/Register"
+import Login from "./pages/Login"
+import ProtectedRoute from "./components/ProtectedRoute"
+
 function App() {
   return (
-    <h1 className="text-3xl font-bold text-green-600 p-6">
-      NutriCheck is working!
-    </h1>
+    <Routes>
+      {/* anyone can see these pages */}
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+
+      {/* only logged-in users can see this page */}
+      <Route
+        path="/menu"
+        element={
+          <ProtectedRoute>
+            <h1>Menu coming soon</h1>
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   )
 }
 
