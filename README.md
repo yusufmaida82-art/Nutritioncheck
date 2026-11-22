@@ -1,16 +1,49 @@
-# React + Vite
+# NutriCheck
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+NutriCheck helps people with diet needs (like a milk allergy, diabetes or celiac disease) find meals that are safe for them.
 
-Currently, two official plugins are available:
+**Live site:** https://nutrition-wheat-eta.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## The problem
+Many people with diet restrictions don't know what is inside a meal. This can lead to poor food choices and health risks.
 
-## React Compiler
+## The solution
+NutriCheck shows meals with their ingredients and warns the user when a meal has something they should avoid.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
+- Register, login and logout with email and password
+- Login with Google
+- Protected pages (only logged-in users can see the menu)
+- Meals loaded from TheMealDB API
+- Meal details page with ingredients
+- Diet warnings (No milk, No sugar, No flour)
+- My Meals: save, add a note, and delete meals (stored in Firebase Firestore)
+- Works on phone, tablet and laptop
 
-## Expanding the ESLint configuration
+## Tech used
+- React (Vite)
+- Tailwind CSS
+- React Router
+- Firebase Authentication
+- Firebase Firestore
+- TheMealDB API
+- Vitest and React Testing Library
+- GitHub Actions
+- Vercel
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## How to run it on your computer
+1. Clone the repo:
+   `git clone https://github.com/yusufmaida82-art/Nutritioncheck.git`
+2. Go into the folder: `cd Nutritioncheck`
+3. Install: `npm install`
+4. Create a `.env` file with your Firebase keys (see `.env.example`)
+5. Start: `npm run dev`
+
+## Tests
+Run `npm test` to run the tests, or `npm run coverage` to see the coverage score.
+
+## Note
+NutriCheck gives guidance only. Always check with the restaurant and your doctor.
+
+## Author
+Maida Yusuf
