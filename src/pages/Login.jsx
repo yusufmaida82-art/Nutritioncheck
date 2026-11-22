@@ -1,59 +1,72 @@
 import { useState } from "react"
 import { signInWithEmailAndPassword } from "firebase/auth"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { auth } from "../firebase"
+import GoogleButton from "../components/GoogleButton"
 
 function Login() {
-  // memory for what the user types
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
-  // memory for an error message (empty at first)
   const [message, setMessage] = useState("")
-
-  // lets us move to another page
   const navigate = useNavigate()
 
-  // runs when the user clicks "Log in"
   async function handleLogin(event) {
-    // stop the page from reloading
     event.preventDefault()
 
-    try {
-      // ask Firebase to check the email and password
-      await signInWithEmailAndPassword(auth, email, password)
+    // check for empty boxes first
+    if (email === "" || password === "") {
+      setMessage("Please fill in all fields")
+      return
+    }
 
-      // it worked, so go to the menu page
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
       navigate("/menu")
-    } catch (error) {
-      // it failed, so show a message
+    } catch {
       setMessage("Wrong email or password")
     }
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold">Login</h1>
+    <div className="max-w-sm mx-auto mt-10 p-6 bg-white rounded shadow">
+      <h1 className="text-2xl font-bold text-emerald-700 mb-4">Login</h1>
 
-      <p className="text-red-600">{message}</p>
+      <p className="text-rose-600 mb-2">{message}</p>
 
       <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <label className="block mb-3">
+          Email
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full border rounded p-2 mt-1"
+          />
+        </label>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <label className="block mb-3">
+          Password
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full border rounded p-2 mt-1"
+          />
+        </label>
 
-        <button type="submit">Log in</button>
+        <button type="submit" className="w-full bg-emerald-600 text-white rounded py-2">
+          Log in
+        </button>
       </form>
+
+      <GoogleButton />
+
+      <p className="mt-4 text-center">
+        No account?{" "}
+        <Link to="/register" className="text-emerald-700 underline">
+          Register
+        </Link>
+      </p>
     </div>
   )
 }
